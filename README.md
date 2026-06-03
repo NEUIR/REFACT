@@ -62,6 +62,18 @@ bash pred_vllm.sh model_path output_dir
 bash eval.sh output_dir  
 ```
 
+## Citation
+
+
+```bibtex
+@article{jin2026refact,
+      title={REFACT: Fact Restatement for Compact and Faithful Chain-of-Thought Reasoning},
+      author={Jin, Zhensheng and Dai, Xin and Liu, Zhenghao and Xiao, Chaojun and Xie, Huiyuan and Gu, Yu and Yu, Ge and Sun, Maosong},
+      year={2026}
+      url={}, 
+}
+```
+
 
 
 
