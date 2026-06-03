@@ -31,7 +31,7 @@ pip install -r requirements_rl.txt
 # Data
 Our corresponding generated training data is placed under the data folder
 
-Download the files from [here](https://huggingface.co/datasets/agentica-org/DeepScaleR-Preview-Dataset)
+Download the files from [here]()
 Use the downloaded data to synthesize the data using the following scripts
 ```
 
@@ -39,14 +39,14 @@ Use the downloaded data to synthesize the data using the following scripts
 
 
 # GRPO
-Our GRPO training uses verl.
+Our GRPO training uses verl. Before use, please modify the model path and dataset path in the script below, as well as the output path for saving checkpoints. You can use our data[here]() for training.
 ```
 conda activate verl
 cd verl
 bash ./example/grpo_trainer/longtext/run_8b_ruler_cite.sh
 ```
 
-# Evaluate Pass@1
+# Evaluate
 Our evaluation uses LongBench's and LVEval's evaluation methodology and we provide nothing but good test datasets. If you want to make any changes, please refer to the files under config.
 ```
 cd LongBench
