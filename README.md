@@ -48,13 +48,14 @@ bash ./example/grpo_trainer/longtext/run_8b_ruler_cite.sh
 
 # Evaluate
 Our evaluation uses LongBench's and LVEval's evaluation methodology and we provide nothing but good test datasets. If you want to make any changes, please refer to the files under config.
+
+Before evaluation, please first go to the [LVEval](https://github.com/infinigence/LVEval) and [LongBench](https://github.com/THUDM/LongBench) official website to download the corresponding dataset.
 ```
 cd LongBench
 python pred.py --model mode_name
 python eval.py --model mode_name
 ```
 
-Before evaluation, please first go to the [LVEval](https://github.com/infinigence/LVEval) official website to download the corresponding dataset.
 ```
 cd LVEval
 bash pred_vllm.sh model_path output_dir
