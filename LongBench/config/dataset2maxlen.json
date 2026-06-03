@@ -1,0 +1,23 @@
+{
+    "narrativeqa": 8192,
+    "qasper": 8192,
+    "multifieldqa_en": 8192,
+    "multifieldqa_zh": 8192,
+    "hotpotqa": 8192,
+    "2wikimqa": 8192,
+    "musique": 8192,
+    "dureader": 2048,
+    "gov_report": 4096,
+    "qmsum": 8192,
+    "multi_news": 8192,
+    "vcsum": 8192,
+    "trec": 8192,
+    "triviaqa": 4096,
+    "samsum": 8192,
+    "lsht": 8192,
+    "passage_count": 8192,
+    "passage_retrieval_en": 8192,
+    "passage_retrieval_zh": 8192,
+    "lcc": 8192,
+    "repobench-p": 8192
+}
