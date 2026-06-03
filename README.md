@@ -1,7 +1,7 @@
 # REFACT: Fact Restatement for Compact and Faithful Chain-of-Thought Reasoning
 
 # Overview
-![](figs/main.pdf)
+![](figs/main.png)
 Overview of Our REFACT Framework.
 
 Click the links below to view our papers, checkpoints:
