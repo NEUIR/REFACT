@@ -39,7 +39,7 @@ Use the downloaded data to synthesize the data using the following scripts
 
 
 # GRPO
-Our GRPO training uses verl. Before use, please modify the model path and dataset path in the script below, as well as the output path for saving checkpoints. You can use our data[here]() for training.
+Our GRPO training uses verl. Before use, please modify the model path and dataset path in the script below, as well as the output path for saving checkpoints. You can use our [data]() for training.
 ```
 conda activate verl
 cd verl
