@@ -2,7 +2,6 @@
 
 # Overview
 ![](figs/main.png)
-Overview of Our REFACT Framework.
 
 Click the links below to view our papers, checkpoints:
 
