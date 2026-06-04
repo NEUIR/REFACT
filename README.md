@@ -38,7 +38,7 @@ bash run_data_pipeline.sh
 ```
 
 
-# GRPO
+# RL Training
 Our GRPO training uses verl. Before use, please modify the model path and dataset path in the script below, as well as the output path for saving checkpoints. You can use our [data](https://huggingface.co/datasets/jinpu666/REFACT_RL) for training.
 ```
 conda activate verl
