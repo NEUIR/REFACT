@@ -5,7 +5,7 @@
 
 Click the links below to view our papers, checkpoints:
 
-<a href='https://arxiv.org/abs/2506.10822'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a><a href='https://huggingface.co/jinpu666/ReCUT-Qwen'><a href='https://huggingface.co/jinpu666/ReCUT-Llama'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-blue'></a>
+<a href='https://arxiv.org/abs/2506.10822'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a><a href='https://huggingface.co/jinpu666/REFACT_Qwen3-4B'><a href='https://huggingface.co/jinpu666/REFACT_Qwen3-8B'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-blue'></a>
 
 # Set up
 **Use `git clone` to download this project**
