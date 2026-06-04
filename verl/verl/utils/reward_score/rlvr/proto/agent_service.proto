@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "inference/grpc";
+package protoes;
+
+message HealthCheckRequest {
+  string service = 1;
+}
+message HealthCheckResponse {
+  enum ServingStatus {
+    UNKNOWN = 0;
+    SERVING = 1;
+    NOT_SERVING = 2;
+  }
+  ServingStatus status = 1;
+}
+
+message Request {
+  bytes payload = 1;
+}
+message Response {
+  int32 code = 1;
+  bytes data = 2;
+  bytes msg = 3;
+}
+
+service AgentService {
+  rpc Health(HealthCheckRequest) returns (HealthCheckResponse);
+  rpc AgentResStream(Request) returns (stream Response);
+}

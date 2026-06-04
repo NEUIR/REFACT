@@ -1,0 +1,1 @@
+python merge_parquet_files.py --input_dirs /user/xuxiaoyue/rldata/qa_en/ /user/xuxiaoyue/rldata/qa_magic/ /user/xuxiaoyue/rldata/qa_tailor/  /user/xuxiaoyue/rldata/en_like/  /user/xuxiaoyue/rldata/math_find/ /user/qiqi/dataset/DocQA-RL-1.6K/  /user/xuxiaoyue/rldata/retrieval_en/ --output_dir /user/xuxiaoyue/rldata/qa_all/

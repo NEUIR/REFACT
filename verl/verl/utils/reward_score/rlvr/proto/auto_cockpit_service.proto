@@ -1,0 +1,23 @@
+syntax = "proto3";
+option go_package = "inference/grpc";
+package protoes;
+
+import "general_servlet_grpc.proto";
+import "general_vllm_servlet_grpc.proto";
+
+message AutoCockpitRequest {
+  string image_data_b64 = 1;
+  string scene = 2;
+  optional protoes.VLLMConfig vllm_config = 100;
+}
+
+message AutoCockpitResponse {
+  int32 code = 1;
+  bytes data = 2;
+  bytes msg = 3;
+}
+
+service AutoCockpitService {
+  rpc Health(protoes.HealthCheckRequest) returns (protoes.HealthCheckResponse);
+  rpc AgentRes(AutoCockpitRequest) returns (AutoCockpitResponse);
+}

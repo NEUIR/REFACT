@@ -1,0 +1,16 @@
+syntax = "proto3";
+option go_package = "inference/grpc";
+package protoes;
+
+message SamplingParams {
+  optional float top_p = 1;
+  optional int32 top_k = 2;
+  optional float temperature = 3;
+  optional float repetition_penalty = 4;
+  optional int32 max_tokens = 5;
+}
+
+message VLLMConfig {
+  int32 num_results = 1;
+  optional SamplingParams sampling_params = 2;
+}

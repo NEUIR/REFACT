@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "inference/grpc";
+
+package com.modlebest.backend.router.client;
+
+service RouterService {
+  rpc Router(RouterRequest) returns (RouterResponse);
+  rpc RouterResStream(RouterRequest) returns (stream RouterResponse);
+}
+
+message RouterRequest { string payload = 1; }
+
+message RouterResponse {
+  int32 code = 1;
+  string msg = 2;
+  string data = 3;
+}

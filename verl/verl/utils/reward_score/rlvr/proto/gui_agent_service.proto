@@ -1,0 +1,42 @@
+syntax = "proto3";
+option go_package = "inference/grpc";
+package protoes;
+
+import "general_servlet_grpc.proto";
+import "general_vllm_servlet_grpc.proto";
+
+message GUIAgentDebugConfig {
+  bool get_label_meta = 1;
+  bool get_labeled_image = 2;
+  bool get_processed_image = 3;
+  bool get_action_args = 4;
+}
+
+message GUIAgentDebugInfo {
+  string label_meta = 1;
+  string labeled_image_data_b64 = 2;
+  string processed_image_data_b64 = 3;
+  string action_args = 4;
+}
+
+message GUIAgentRequest {
+  string image_data_b64 = 1;
+  string car_xml = 2;
+  string phone_xml = 3;
+  string intent = 4;
+  string history = 5;
+  optional protoes.VLLMConfig vllm_config = 100;
+  optional GUIAgentDebugConfig debug_config = 200; 
+}
+
+message GUIAgentResponse {
+  int32 code = 1;
+  bytes data = 2;
+  bytes msg = 3;
+  optional GUIAgentDebugInfo debug_info = 4;
+}
+
+service GUIAgentService {
+  rpc Health(protoes.HealthCheckRequest) returns (protoes.HealthCheckResponse);
+  rpc AgentRes(GUIAgentRequest) returns (GUIAgentResponse);
+}
