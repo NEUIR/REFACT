@@ -29,10 +29,7 @@ pip install -r requirements_rl.txt
 ```
 
 # Data
-Our corresponding generated training data is placed under the data folder
-
-Download the files from [here]()
-Use the downloaded data to synthesize the data using the following scripts
+If you want to reproduce the process of constructing the reasoning trajectory of fact restatement from scratch, Please use the following command
 ```
 
 ```
