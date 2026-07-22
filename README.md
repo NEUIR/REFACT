@@ -9,7 +9,7 @@ Click the links below to view our papers, checkpoints:
 ![](figs/main.png)
 The pipeline starts from an original QA dataset containing source contexts, questions, supporting facts, and gold answers. A teacher reasoning model first generates adaptive fact-restatement traces by deciding when evidence is needed and how each cited fact should be expressed, allowing citations to appear as entities, phrases, or sentences rather than fixed-format fact copies. The generated traces are then filtered according to format validity, answer accuracy, source traceability, and evidence sufficiency, ensuring that the retained reasoning trajectories are both well-formed and genuinely grounded in the source context. To improve robustness in long-context settings, we further insert distractor paragraphs under target length buckets of 32k, 64k, and 128k, producing length-diverse instances that span practical long-context ranges. The final dataset is used to train models to generate compact, faithful, and citation-grounded reasoning trajectories.
 
-# Set up
+# Set Up
 **Use `git clone` to download this project**
 ```
 git clone https://github.com/NEUIR/REFACT.git
@@ -30,7 +30,7 @@ pip install -r requirements_rl.txt
 
 ```
 
-# Data
+# Data Preparing
 If you want to reproduce the process of constructing the reasoning trajectory of fact restatement from scratch, Please use the following command
 ```
 cd data
@@ -67,7 +67,7 @@ bash eval.sh output_dir
 
 ```bibtex
 @article{jin2026refact,
-      title={REFACT: Fact Restatement for Compact and Faithful Chain-of-Thought Reasoning},
+      title={REFACT: Aaptive Fact Restatement for Compact and Faithful Chain-of-Thought Reasoning},
       author={Jin, Zhensheng and Dai, Xin and Liu, Zhenghao and Xiao, Chaojun and Xie, Huiyuan and Gu, Yu and Yu, Ge and Sun, Maosong},
       year={2026}
       url={}, 
