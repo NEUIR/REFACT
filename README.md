@@ -1,4 +1,4 @@
-# REFACT: Fact Restatement for Compact and Faithful Chain-of-Thought Reasoning
+# REFACT: Adaptive Fact Restatement for Compact and Faithful Chain-of-Thought Reasoning
 
 Click the links below to view our papers, checkpoints:
 
