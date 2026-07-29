@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import re
 import string
-from typing import Dict, Optional, List, Tuple
+from typing import Any, Dict, Optional, List, Tuple
 from .gen_judge import score_with_llm_judge, score_citation_validity
 
 
@@ -199,6 +200,21 @@ def compute_math_match(pred_text: str, ref_text: str) -> bool:
 # ============================================================
 #  辅助函数
 # ============================================================
+
+def parse_extra_info(extra_info: Any) -> Dict:
+    """解析 VERL 从输入样本传入的 extra_info。"""
+    if extra_info is None:
+        return {}
+    if isinstance(extra_info, dict):
+        return extra_info
+    if isinstance(extra_info, str):
+        try:
+            parsed = json.loads(extra_info)
+        except (json.JSONDecodeError, TypeError):
+            return {}
+        return parsed if isinstance(parsed, dict) else {}
+    return {}
+
 
 def parse_ground_truth(ground_truth, method=None) -> List[str]:
     text_gt = str(ground_truth).strip()
@@ -580,10 +596,10 @@ REWARD_REGISTRY = {
 
 # 默认配置: 所有奖励都启用，权重与原代码一致
 DEFAULT_REWARD_CONFIG = {
-    "format":            {"enabled": True, "weight": 0.2},
+    "format":            {"enabled": True, "weight": 0.1},
     "correctness":       {"enabled": True, "weight": 0.5},
-    "consistency":       {"enabled": True, "weight": 0.3},
-    "citation_validity": {"enabled": False, "weight": 0},
+    "consistency":       {"enabled": True, "weight": 0.1},
+    "citation_validity": {"enabled": False, "weight": 0.3},
 }
 
 
@@ -798,12 +814,13 @@ def compute_score(solution_str: str,
                  # evidence_based 专用参数
                  question: str = "",
                  source_text: str = "",
+                 extra_info: Any = None,
                  reward_config: Optional[Dict] = None,
                  # ★ 保留旧参数以兼容，但优先使用 reward_config
                  format_weight: float = 0.1,
                  correctness_weight: float = 0.5,
-                 consistency_weight: float = 0.2,
-                 citation_validity_weight: float = 0.2,
+                 consistency_weight: float = 0.1,
+                 citation_validity_weight: float = 0.3,
                  similarity_threshold: float = 0.6,
                  ):
 
@@ -812,6 +829,17 @@ def compute_score(solution_str: str,
 
     # ★ evidence_based 评分
     if scoring_method == "evidence_based":
+        # VERL 将输入文件中当前样本的 extra_info 传给奖励函数。
+        # 一致性奖励优先使用该样本自己的 extra_info.source_text；
+        # 显式 source_text 参数仅作为兼容旧调用方式的后备。
+        input_info = parse_extra_info(extra_info)
+        if "source_text" in input_info:
+            input_source_text = input_info["source_text"]
+            source_text = input_source_text if isinstance(input_source_text, str) else ""
+        if "question" in input_info:
+            input_question = input_info["question"]
+            question = input_question if isinstance(input_question, str) else ""
+
         # 如果没有传入 reward_config，则从旧的 xxx_weight 参数构建一个
         if reward_config is None:
             reward_config = {
@@ -993,10 +1021,10 @@ if __name__ == "__main__":
         scoring_method="evidence_based",
         question="What is the battery capacity?",
         source_text=test_source,
-        format_weight=0.0,          # 禁用格式奖励
+        format_weight=0.1,          
         correctness_weight=0.5,
-        consistency_weight=0.5,
-        citation_validity_weight=0.0,  # 禁用引用有效性
+        consistency_weight=0.1,
+        citation_validity_weight=0.3,
         debug=True,
     )
     print(f"Result: {result5}")
