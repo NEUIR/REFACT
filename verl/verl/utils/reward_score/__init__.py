@@ -13,7 +13,6 @@
 # limitations under the License.
 
 from verl.utils.import_utils import deprecated
-import json
 
 def default_compute_score(
     data_source,
@@ -32,25 +31,12 @@ def default_compute_score(
     ] or data_source.startswith("evidence_based"):
         from .long_context import longcite
 
-        question = ""
-        source_text = ""
-
-        if isinstance(extra_info, str):
-            try:
-                extra_info = json.loads(extra_info)
-            except (json.JSONDecodeError, TypeError):
-                extra_info = {}
-
-        if extra_info:
-            question = extra_info.get("question", "")
-            source_text = extra_info.get("source_text", "")
-
         # ★ 手动设定奖励配置，权重为 0 的奖励会被自动禁用
         reward_config = {
-            "format":            0.2,
+            "format":            0.1,
             "correctness":       0.5,
             "consistency":       0.3,
-            "citation_validity": 0,
+            "citation_validity": 0.1,
         }
 
         res = longcite.compute_score(
@@ -58,8 +44,9 @@ def default_compute_score(
             ground_truth,
             scoring_method="evidence_based",
             language="auto",
-            question=question,
-            source_text=source_text,
+            # longcite 直接从该条输入样本的 extra_info.source_text
+            # 读取一致性奖励所需的原文。
+            extra_info=extra_info,
             reward_config=reward_config,
         )
 
