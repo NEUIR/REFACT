@@ -35,8 +35,8 @@ def default_compute_score(
         reward_config = {
             "format":            0.1,
             "correctness":       0.5,
-            "consistency":       0.3,
-            "citation_validity": 0.1,
+            "consistency":       0.1,
+            "citation_validity": 0.3,
         }
 
         res = longcite.compute_score(
